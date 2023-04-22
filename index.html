@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>Desconto de acordo com validade</h1>
+        <form action="" method="get" onsubmit="event.preventDefault(); calcular()">
+            <p>
+                <label for="preco">Digite o preço</label>
+                <input type="number" name="preco" id="preco">
+            </p>
+            <p>
+                <label for="validade">Digite a validade</label>
+                <input type="number" name="validade" id="validade" required>
+            </p>
+            <p>     
+                <input type="submit" value="Calcular">
+            </p>
+        </form>
+    </main>
+    <section>
+        <p id="msg"> O resultado vai aparecer aqui...</p>
+    </section>
+<script>
+    function calcular() {
+        let pre = Number(preco.value)
+        let val = Number(validade.value)
+        let des80 = pre - ((pre * 80) /100)
+        let des30 = pre - ((pre * 30) /100)
+        let des10 = pre - ((pre * 10) /100)
+        if (val > 0 && val < 8) {
+            msg.innerHTML = `Esse produto vencerá daqui a <strong>${val}</strong> dia(s) e o valor final já com desconto será de <strong>R$ ${des80},00</strong>.`
+        } 
+        else if (val > 7 && val < 31) {
+            msg.innerHTML = `Esse produto vencerá daqui a <strong>${val}</strong> dia(s) e o valor final já com desconto será de <strong>R$ ${des30},00</strong>.`
+        }
+        else if (val > 30 && val < 61) {
+            msg.innerHTML = `Esse produto vencerá daqui a <strong>${val}</strong> dia(s) e o valor final já com desconto será de <strong>R$ ${des10},00</strong>.`
+        }
+        else {
+            msg.innerHTML = `Esse produto vencerá daqui a <strong>${val}</strong> dia(s) e não terá desconto.`
+        }
+    }
+</script>
+</body>
+</html>
